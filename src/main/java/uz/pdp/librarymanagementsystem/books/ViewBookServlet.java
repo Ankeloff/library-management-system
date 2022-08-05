@@ -29,6 +29,8 @@ public class ViewBookServlet extends HttpServlet {
 
         req.setAttribute("bookList", bookList);
 
+        System.out.println("ffsrgg");
+
         Boolean added = Boolean.valueOf(req.getParameter("added"));
         if (added) {
             req.setAttribute("message", "Successfully added!!!");
