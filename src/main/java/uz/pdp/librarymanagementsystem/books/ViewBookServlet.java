@@ -34,5 +34,6 @@ public class ViewBookServlet extends HttpServlet {
             req.setAttribute("message", "Successfully added!!!");
         }
         req.getRequestDispatcher("book.jsp").forward(req, resp);
+
     }
 }
