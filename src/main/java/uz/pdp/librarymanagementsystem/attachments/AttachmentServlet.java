@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.Arrays;
 
 import static uz.pdp.librarymanagementsystem.utils.Util.UPLOAD_DIRECTORY;
 
@@ -23,8 +24,11 @@ public class AttachmentServlet extends HttpServlet {
 
 
         String pathInfo = req.getPathInfo();
+        System.out.println(pathInfo);
         String[] pathParts = pathInfo.split("/");
+        System.out.println(Arrays.toString(pathParts));
         String fileName = pathParts[1];
+        System.out.println(fileName);
 //        String fileName = pathParts[2];
 
 

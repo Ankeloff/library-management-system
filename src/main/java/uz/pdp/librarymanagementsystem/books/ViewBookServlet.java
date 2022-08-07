@@ -12,10 +12,10 @@ import java.util.List;
 @WebServlet({"", "/books"})
 public class ViewBookServlet extends HttpServlet {
 
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
+        System.out.println("HELLO");
 
 
         String pageStr = req.getParameter("page");
@@ -28,6 +28,7 @@ public class ViewBookServlet extends HttpServlet {
         List<Book> bookList = BookDao.getAllBooks(size, page);
 
         req.setAttribute("bookList", bookList);
+
 
         System.out.println("ffsrgg");
 
