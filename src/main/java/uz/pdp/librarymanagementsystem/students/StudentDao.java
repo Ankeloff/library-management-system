@@ -19,10 +19,12 @@ public class StudentDao {
 
         List<Student> studentList = getStudentList();
 
+        if (student.getPassword().isEmpty()){
+            return false;
+        }
+
         for (Student student1 : studentList) {
-            if (student.getUsername().equals(student1.getUsername())){
-                return false;
-            } else if (student.getPassword().isEmpty()) {
+            if (student.getUsername().equals(student1.getUsername())) {
                 return false;
             }
         }
