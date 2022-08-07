@@ -16,7 +16,7 @@
     <a href="register.jsp">Register</a>
     <br>
     <br>
-    <a href="login.jsp">Login</a>
+    <a class="flex-box" href="login.jsp">Login</a>
 
 
 </body>

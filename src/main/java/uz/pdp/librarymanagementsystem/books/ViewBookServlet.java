@@ -31,12 +31,10 @@ public class ViewBookServlet extends HttpServlet {
                 .build();
 
         boolean result = StudentDao.Register(student);
-            if (result){
-                resp.sendRedirect("/books?added=true");
-            }else{
-                req.getRequestDispatcher("register.jsp");
-            }
-
+        System.out.println(result);
+         if (!result){
+             return;
+         }
 
         String pageStr = req.getParameter("page");
         int page = 1;
@@ -61,8 +59,18 @@ public class ViewBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        System.out.println("HELLO");
+        String username = req.getParameter("username");
+        String password = req.getParameter("password");
 
+        Student student = new Student();
+        student.setUsername(username);
+        student.setPassword(password);
+
+        boolean result = StudentDao.Login(student);
+
+        if (!result) {
+            req.getRequestDispatcher("login.jsp").forward(req,resp);
+        }
 
         String pageStr = req.getParameter("page");
         int page = 1;
@@ -75,16 +83,11 @@ public class ViewBookServlet extends HttpServlet {
 
         req.setAttribute("bookList", bookList);
 
-
-        System.out.println("ffsrgg");
-
-        Boolean added = Boolean.valueOf(req.getParameter("added"));
+        boolean added = Boolean.parseBoolean(req.getParameter("added"));
         if (added) {
             req.setAttribute("message", "Successfully added!!!");
         }
         req.getRequestDispatcher("book.jsp").forward(req, resp);
-
-
 
     }
 }

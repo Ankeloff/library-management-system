@@ -1,6 +1,7 @@
 package uz.pdp.librarymanagementsystem.category;
 
 import uz.pdp.librarymanagementsystem.db.DbConnection;
+import uz.pdp.librarymanagementsystem.students.Student;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -40,4 +41,7 @@ public class CategoryDao {
         }
 
     }
+
+
+
 }
