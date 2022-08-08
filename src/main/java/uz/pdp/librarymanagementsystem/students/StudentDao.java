@@ -110,6 +110,8 @@ public class StudentDao {
 
         List<Student> studentList = getStudentList();
 
+
+
         for (Student student1 : studentList) {
             if (student1.getUsername().equals(student.getUsername()) &&
                     student1.getPassword().equals(student.getPassword())){

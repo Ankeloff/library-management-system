@@ -1,4 +1,4 @@
-package uz.pdp.librarymanagementsystem;
+package uz.pdp.librarymanagementsystem.students;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -8,11 +8,17 @@ import jakarta.servlet.http.HttpServletResponse;
 
 import java.io.IOException;
 
-@WebServlet("")
-public class Login extends HttpServlet {
+@WebServlet("/students")
+public class StudentServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-     req.getRequestDispatcher("test.jsp").forward(req,resp);
+
+    }
+
+
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
     }
 }

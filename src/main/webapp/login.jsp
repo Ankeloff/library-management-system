@@ -1,4 +1,4 @@
-<%--
+<%@ page import="uz.pdp.librarymanagementsystem.test" %><%--
   Created by IntelliJ IDEA.
   User: cosmos
   Date: 27/07/22
@@ -78,6 +78,7 @@
 
 <form class="box" action="/books" method="get">
     <h1>Sign up</h1>
+    <% test.s = true; %>
     <input type="text" name="username" placeholder="username" required>
     <input type="text" name="password" placeholder="password" required>
     <input type="submit" value="Sign in">

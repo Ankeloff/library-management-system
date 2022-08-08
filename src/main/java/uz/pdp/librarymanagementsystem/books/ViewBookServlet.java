@@ -11,8 +11,12 @@ import uz.pdp.librarymanagementsystem.students.StudentDao;
 import java.io.IOException;
 import java.util.List;
 
+import static uz.pdp.librarymanagementsystem.test.currentStudent;
+import static uz.pdp.librarymanagementsystem.test.s;
+
 @WebServlet({"/books"})
 public class ViewBookServlet extends HttpServlet {
+
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -30,11 +34,15 @@ public class ViewBookServlet extends HttpServlet {
                 .age(age)
                 .build();
 
+
+
         boolean result = StudentDao.Register(student);
         System.out.println(result);
          if (!result){
              return;
          }
+
+         currentStudent = student;
 
         String pageStr = req.getParameter("page");
         int page = 1;
@@ -52,6 +60,7 @@ public class ViewBookServlet extends HttpServlet {
             req.setAttribute("message", "Successfully added!!!");
         }
 
+        System.out.println(currentStudent);
 
         req.getRequestDispatcher("book.jsp").forward(req, resp);
     }
@@ -59,19 +68,29 @@ public class ViewBookServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String username = req.getParameter("username");
-        String password = req.getParameter("password");
+        if (s) {
+            String username = req.getParameter("username");
+            String password = req.getParameter("password");
 
-        Student student = new Student();
-        student.setUsername(username);
-        student.setPassword(password);
+            Student student = new Student();
+            student.setUsername(username);
+            student.setPassword(password);
 
-        boolean result = StudentDao.Login(student);
+            boolean result = StudentDao.Login(student);
 
-        if (!result) {
-            req.getRequestDispatcher("login.jsp").forward(req,resp);
+            if (!result) {
+                req.getRequestDispatcher("login.jsp").forward(req, resp);
+            }
+
+            List<Student> studentList = StudentDao.getStudentList();
+
+            for (Student student1 : studentList) {
+                if(student1.getUsername().equals(username)){
+                    currentStudent = student1;
+                }
+            }
+            s = false;
         }
-
         String pageStr = req.getParameter("page");
         int page = 1;
         if (pageStr != null) {
@@ -87,6 +106,10 @@ public class ViewBookServlet extends HttpServlet {
         if (added) {
             req.setAttribute("message", "Successfully added!!!");
         }
+        System.out.println(currentStudent);
+
+
+
         req.getRequestDispatcher("book.jsp").forward(req, resp);
 
     }
