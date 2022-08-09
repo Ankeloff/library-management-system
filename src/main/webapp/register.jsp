@@ -78,11 +78,9 @@
 
 <form class="box" action="/books" method="post">
     <h1>Sign up</h1>
-    <input type="text" name="fullname" placeholder="fullname" required>
     <input type="text" name="username" placeholder="username" required>
     <input type="text" name="phoneNumber" placeholder="phoneNumber" required>
     <input type="text" name="password" placeholder="password" required>
-    <input type="number" name="age" placeholder="age" required>
     <input type="submit" value="Sign in">
 </form>
 

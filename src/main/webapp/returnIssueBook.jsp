@@ -22,7 +22,7 @@
 
 <!--SAYTNI MENYUDAN PASTKI QISMI KONTENTLAR-->
 <section class="container mt-4 ">
-  <form action="/addissue"method="post">
+  <form action="/issue-return-book"method="post">
     <label for="userId">Select Student:</label>
 
     <select id="userId" name="userId">

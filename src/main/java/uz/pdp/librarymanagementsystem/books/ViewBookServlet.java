@@ -21,17 +21,13 @@ public class ViewBookServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        String fullname = req.getParameter("fullname");
         String username = req.getParameter("username");
         Long phoneNumber = Long.valueOf(req.getParameter("phoneNumber"));
         String password = req.getParameter("password");
-        Integer age = Integer.valueOf(req.getParameter("password"));
 
         Student student = Student.builder()
-                .fullname(fullname)
                 .username(username).phoneNumber(phoneNumber)
                 .password(password)
-                .age(age)
                 .build();
 
 
@@ -107,8 +103,6 @@ public class ViewBookServlet extends HttpServlet {
             req.setAttribute("message", "Successfully added!!!");
         }
         System.out.println(currentStudent);
-
-
 
         req.getRequestDispatcher("book.jsp").forward(req, resp);
 

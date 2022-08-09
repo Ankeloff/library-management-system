@@ -9,6 +9,8 @@ import java.util.List;
 
 public class StudentDao {
 
+
+
     public static boolean Register(Student student){
 
         if (student.getUsername().equals("admin")){
@@ -34,14 +36,14 @@ public class StudentDao {
         try {
           Connection connection = DbConnection.getConnection();
             System.out.println(student);
-            String sql = "INSERT INTO student(fullname, username, phone_number, password, age)" +
-                "VALUES ('"+ student.getFullname() +"','"+ student.getUsername()+"','"+ student.getPhoneNumber() +"'," +
-                    "'"+ student.getPassword() +"','"+ student.getAge()+"')";
+            String sql = "INSERT INTO student(username, phone_number, password)" +
+                "VALUES ('"+ student.getUsername()+"','"+ student.getPhoneNumber() +"'," +
+                    "'"+ student.getPassword() +"')";
 
             Statement statement = connection.createStatement();
 
 
-            System.out.println(statement.execute(sql));
+            statement.executeQuery(sql);
 
 //            preparedStatement.setString(1,student.getFullname());
 //            preparedStatement.setString(2,student.getUsername());
@@ -76,20 +78,16 @@ public class StudentDao {
             while(resultSet.next()){
 
             Long id = resultSet.getLong("id");
-            String fullname = resultSet.getString("fullname");
             String username = resultSet.getString("username");
             Long phoneNumber = resultSet.getLong("phone_number");
             String password = resultSet.getString("password");
-            int age = resultSet.getInt("age");
             boolean isAdmin = resultSet.getBoolean("is_admin");
 
             Student student = Student.builder()
                     .id(id)
-                    .fullname(fullname)
                     .username(username)
                     .phoneNumber(phoneNumber)
                     .password(password)
-                    .age(age)
                     .isAdmin(isAdmin)
                     .build();
 
@@ -120,5 +118,28 @@ public class StudentDao {
         }
 
         return false;
+    }
+
+    public boolean updateUser(Student student){
+
+        boolean rowUpdated;
+
+
+        try {
+            Connection connection = DbConnection.getConnection();
+            Statement statement = connection.createStatement();
+
+            String sql = "update student set username = '"+ student.getUsername() +"'," +
+                    " phone_number = '"+ student.getPhoneNumber() +"'," +
+                    "password = '"+ student.getPassword() +"' where id = '"+ student.getId()+"'";
+
+            statement.executeUpdate(sql);
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
+        return true;
     }
 }

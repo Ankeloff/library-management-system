@@ -126,7 +126,6 @@ public class BookDao {
             PreparedStatement preparedStatement2 = connection.prepareStatement(insertBooksAuthors);
 
             int executeUpdate1 = preparedStatement.executeUpdate();
-
             int executeUpdate2 = 0;
             for (Long authorId : book.getAuthorsIds()) {
                 preparedStatement2.setLong(1, authorId);
